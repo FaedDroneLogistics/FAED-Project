@@ -1,0 +1,129 @@
+= 0.0.15
+
+* Several bug fixes and little nice-to-have features, lots of documentation
+updates
+* Added classes for the Google geocoder, and the Mapquest geocoder in batch
+mode
+* Added PointSplineFunction and ViewSplineFunction classes, to accept Points
+and Views as control points
+* New helper function to ingest KML and create a tour flying through the
+placemarks therein
+* Another new helper function to return each LookAt in a KML document, similar
+to each_placemark
+* Greatly improved handling of multiple documents, including giving each
+document a :filename property and the ability to write KMZ files automatically
+
+= 0.0.14
+
+* Added lots and lots of tests, and removed some for features that aren't ever
+used anymore
+* Began adding self.parse() functions for different objects, to allow objects
+to create themselves from KML
+* Several bug fixes
+* Use Bundler properly
+* Added basic (slow) support for "regionating" placemarks
+* Add step parameter to orbit function
+* Add LatLonInterp to interpolate latitude and longitude in Function objects,
+dealing with wraparound and meaningful ranges of values
+* Swap out geocoders, as Yahoo's is no longer free
+* Add get_camera_view() for easier multicam
+* Make orbit() handle different durations
+
+= 0.0.13
+
+* Fix the orbit function
+
+= 0.0.12
+
+* Add function bounce() to simulate flying in bounce mode between two
+AbstractViews
+* Add support for timestamp / timespan in make_function_paths and
+make_view_from
+* Fix convert_coords to return floats, not strings
+* Add multidimensional function API, and spline functions to use it
+* Add code to calculate positions for simulated panoramic cameras, hereafter
+known as "multicam"
+
+= 0.0.11
+
+* Add ability to change the current document easily
+* Update documentation
+* Given an abstractview, return a string suitable for queries.txt
+* Add handling of various mathematical function types for calculating paths, etc.
+* Add better support for KML Change elements
+
+= 0.0.10
+
+* Bug fix: Untangle reversed logic in slave / master mode handling
+
+= 0.0.9
+
+* Add master/slave mode to documents, and to objects. Now objects can be
+tagged as "master_only", and will thereby show up only in KML created when the
+Document's master_mode is true. This makes it easier to make tours where the
+master node needs to have various screen overlays or network links, but the
+slaves don't.
+* Added logging feature. Use Kamelopard.set_logger() to set a callback
+function that runs whenever Kamelopard wants to log something. Supports log
+levels. Few log messages exist at this point.
+
+= 0.0.8
+
+* Move from Github to the Liquid Galaxy Google Code repository
+* Add support for multiple simultaneous documents
+* Add support for viewsyncrelay actions
+* Add default wait at the beginning of each tour, to prevent glitches
+* Fix quite a bit of CDATA handling
+
+= 0.0.7
+
+* Add lots of new helper functions
+* Add functions to extract placemarks from existing KML
+* Added functions to create an HTML tour index automatically
+* Fix bug in NetworkLinks
+* Handle UTF8 in source code properly
+* Fix balloonVisibility error
+
+= 0.0.6
+
+* Support resolution argument to interpolate()
+* Add several new helper functions
+* Add support for gx:Track objects
+* Handle coordinates with strange spaces in them, support real degrees symbol
+* Fix bug with polygons
+* Add functions for processing telemetry data
+* Add decent ExtendedData support
+
+= 0.0.5
+
+* Changed constructors to accept arguments as a hash, rather than some arbitrary and hard-to-remember order
+* Converted from REXML to libxml; speed improved dramatically
+* Added better CDATA support to Feature description attributes
+* Removed color elements from ListStyle
+* Fix AnimatedUpdates and Snippets to make them more reliable
+* Added support for Polygon and MultiGeometry objects
+* Fixed support functions and PointList to handle Kamelopard module
+* Added NetworkLink objects
+
+= 0.0.4
+
+* Changed all KML output to produce REXML::Element and REXML::Document objects, instead of simply strings containing XML
+* Wrapped all of Kamelopard in a module, to prevent name collisions
+* Changed variuos names to something meaningful, where previously they'd been deliberately made strange to avoid namespace problems
+* Finished test suite, taking into account all the above changes
+
+= 0.0.3
+
+* Significantly expanded test suite after converting it to use rspec
+* Added support for several new objects
+* Removed some error checks that didn't work properly
+
+= 0.0.2
+
+* Add soundcue objects
+* Add support for dms format lat/long
+* Include geocode library by default, and remove XML because it was a pain
+
+= 0.0.1
+
+* Initial github push, including basic classes for most KML objects, spline code, and some helper functions
