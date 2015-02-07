@@ -1,0 +1,178 @@
+/*
+ * Copyright (C) 2012 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
+
+buildscript {
+  repositories {
+    jcenter()
+    mavenCentral()
+  }
+
+  dependencies {
+    classpath 'org.gradle.api.plugins:gradle-izpack-plugin:0.2.3'
+    classpath 'org.gradle.api.plugins:gradle-android-plugin:1.2.1'
+  }
+
+}
+
+allprojects {
+  ext {
+    // Specify the IS version here.
+    //
+    // The intermediate designation is for marking a particular build
+    // as an intermediate version. An intermediate version must never
+    // be pushed to production.
+    //
+    // Final versions should set the qualifier to null.
+    interactiveSpacesVersion = '1.8.0'
+    interactiveSpacesVersionQualifier = 'SNAPSHOT'
+
+    // These specify the layout of IS containers.
+    
+    // Where the Java system libraries go
+    interactiveSpacesContainerSystemJava = 'lib/system/java'
+    
+    // Where the OSGi bootstrap bundles go
+    interactiveSpacesContainerBootstrap = 'bootstrap'
+    
+    // Where the extras support jars go.
+    interactiveSpacesContainerExtrasSupportJars = 'extras/support/jars'
+
+    // When building the containers, where do we build?
+    containerBuildTarget = 'build/staging'
+
+    nonjavaProjects = [ 
+      'interactivespaces_docs', 
+      'interactivespaces-controller-android', 
+      'service',
+      'interactivespaces_build', 
+      'master', 'controller', 'workbench'
+    ]
+
+    javaProjects = rootProject.subprojects.findResults { (!nonjavaProjects.contains(it.name)) ? it : null }
+
+    if (project.hasProperty("buildTypeProp")) {
+      buildType = project.buildTypeProp
+    } else {
+      buildType = "standard"
+    }
+
+    if (buildType == 'android') {
+      androidPlatformHome = getProperty("android.sdk.home") + "/platforms/" + getProperty("android.platform")
+      androidPlatformTools = getProperty("android.sdk.home") + "/platform-tools"
+      androidSdkJar = "$androidPlatformHome/android.jar"
+    }
+
+    osgiVersion = interactiveSpacesVersionQualifier ? 
+        interactiveSpacesVersion + "." + interactiveSpacesVersionQualifier :
+        interactiveSpacesVersion
+  }
+
+  group = 'interactivespaces'
+  version = osgiVersion
+
+  tasks.withType(JavaCompile) { 
+    sourceCompatibility = "1.6"
+    targetCompatibility = "1.6" 
+  }
+}
+
+subprojects {
+
+  ext {
+    extrasBuildFolder = "build/staging/controller/extras"
+  }
+
+  if (!ext.nonjavaProjects.contains(name)) {
+    apply plugin: 'java'
+    apply plugin: 'maven'
+    apply plugin: 'eclipse'
+    apply plugin: 'idea'
+
+    if (name != 'interactivespaces-bootstrap-core') {
+      apply plugin: 'osgi'
+    }
+
+    apply plugin: 'jacoco'
+ 
+    jacocoTestReport {
+      group = "reporting"
+      description = "Generate Jacoco coverage reports after running tests."
+      reports {
+        xml.enabled true
+        html.enabled true
+        csv.enabled false
+      }
+
+      additionalSourceDirs = files(sourceSets.main.allJava.srcDirs)
+    }
+
+    // Add in configuratations to the standard Java build
+    configurations {
+      // dependencies which are provided by the container.
+      provided
+
+      // JARs which will be expanded into a normal jar
+      expandedJars
+
+      // Compile time resources needed for compiling extras local to the
+      // extra.
+      extrasCompile
+
+      // Compile time resources needed for compiling extras shared by many
+      // extras.
+      extrasSupportCompile
+    }
+
+    sourceSets {
+      main { 
+           // Provided libraries should be on the compile classpath, though
+           // not in the compile configuration.
+      	   compileClasspath += [configurations.provided]
+      	   compileClasspath += [configurations.expandedJars]
+      	   compileClasspath += [configurations.extrasCompile]
+      	   compileClasspath += [configurations.extrasSupportCompile]
+      }
+    }
+
+    // Provided dependencies need to be available to eclipse.
+    eclipse.classpath.plusConfigurations += [configurations.provided]
+    eclipse.classpath.plusConfigurations += [configurations.expandedJars]
+    eclipse.classpath.plusConfigurations += [configurations.extrasCompile]
+    eclipse.classpath.plusConfigurations += [configurations.extrasSupportCompile]
+
+    install.dependsOn build
+  }
+
+  repositories {
+    mavenLocal()
+    mavenCentral()
+    maven {
+      url 'https://oss.sonatype.org/content/repositories/snapshots'
+    }
+    maven {
+      url 'http://repo.spring.io/libs-release-remote'
+    }
+    maven {
+      url 'http://repository.pentaho.org/artifactory/repo/'
+    }
+  }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.0'
+}
+
+defaultTasks 'install'

@@ -1,0 +1,64 @@
+/*
+ * Copyright (C) 2012 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
+
+include 'nrosjava_bootstrap', 'nrosjava_messages', 
+        'napache_xmlrpc_common', 'napache_xmlrpc_client', 'napache_xmlrpc_server',
+        'nrosjava', 'nrosjava_geometry',
+        'interactivespaces-core',
+	'interactivespaces-system',
+	'interactivespaces-database',
+	'interactivespaces-interaction',
+	'service:interactivespaces-service-core',
+	'service:interactivespaces-service-web',
+	'service:interactivespaces-service-script',
+	'service:interactivespaces-service-scheduler',
+	'service:interactivespaces-service-template',
+	'service:interactivespaces-service-alert',
+	'service:interactivespaces-service-alert-notifier-mail',
+	'service:interactivespaces-service-mail-sender',
+	'service:interactivespaces-service-mail-receiver',
+	'service:interactivespaces-service-audio-player',
+	'service:interactivespaces-service-speech-synthesis',
+	'service:interactivespaces-service-comm-chat',
+	'service:interactivespaces-service-comm-twitter',
+	'service:interactivespaces-service-image-vision',
+	'service:interactivespaces-service-image-vision-opencv',
+	'service:interactivespaces-service-image-depth-openni2',
+	'service:interactivespaces-service-image-depth',
+        'interactivespaces-master-controller',
+        'interactivespaces-activity-runtime',
+        'interactivespaces-activity-runtime-standalone',
+	'interactivespaces-controller',
+        'interactivespaces-activity-wrapper-script',
+	'interactivespaces-master', 
+	'interactivespaces-master-webapp',
+	'rosjava_osgi', 'rosjava_osgi_master', 'rosjava_osgi_node',
+	'rosjava_zeroconf_common', 'rosjava_zeroconf_master', 
+	'rosjava_zeroconf_node',
+	'interactivespaces-launcher', 'interactivespaces-launcher-bootstrap',
+        'interactivespaces-bootstrap-core',
+	'interactivespaces-hardware',
+	'interactivespaces-workbench',
+	'interactivespaces-workbench-testing',
+	'interactivespaces_docs',
+        'interactivespaces-controller-android', 
+        'service:interactivespaces-service-androidos',
+	'service:interactivespaces-service-comm-serial',
+	'service:interactivespaces-service-comm-usb',
+        'service:interactivespaces-service-comm-bluetooth',
+        'interactivespaces_build:master',
+        'interactivespaces_build:controller',
+        'interactivespaces_build:workbench'
