@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+
+<!-- Tested In Chrome. -->
+
+<html>
+
+<head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Simple Web Activity Example</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
+	<script src="js/map_moon.js"></script>
+	<script src="js/webspeech.js"></script>
+	<script src="js/auxiliar.js"></script>
+		
+	<script type="text/javascript">
+		var ws; 
+		$(document).ready(function () {
+		  ws = new WebSocket("ws://192.168.1.50:9101/websocket"); 
+		  ws.onopen = function(event) { 
+		      $('#status').text("The WebSocket Connection Is Open."); 
+		  }
+		  ws.onmessage = function(event) { 
+		      var data = JSON.parse(event.data);
+		      console.log(data);
+		      if(data.message=="ON"){
+		      reco.toggleStartStop();
+		      }
+		  }
+		  ws.onclose = function(event) { 
+		      $('#status').text("The WebSocket Connection Has Been Closed."); 
+		  }
+		}); 
+
+		function send_voice(name) {
+			console.log(name);
+			name=normalize(name);
+			var message = JSON.stringify({message: name});
+			ws.send(message);
+		}
+	</script>
+
+</head>
+
+<body onload="map_moon()">
+	<div id="box">
+		<form method="post">
+		<!--<input name="poi" id="input_field" size="20" style="visibility:hidden">-->
+		</form>
+		<button onclick="reco.toggleStartStop()" style="border: 0; background-color:transparent">
+		<img id="status_img" src="img/mic.png" alt="Start"></button>
+	</div>
+	
+	<div id="box3">
+		<div id="box2">
+			<img src="img/logo_oro.png" style="width: 300px">
+		</div>
+	</div>
+	
+	
+	<div id="right">
+		<div class="detailView">
+			<div class="item" onclick="send_voice('search=0.681943, 23.459048');">
+			<a href="javascript:google.maps.event.trigger(gmarkers['Apollo 11'],'click');">
+				<img src="img/apollo/apollo11.png" class="pix" />
+					<div class="txt">
+						<h3>LANDINGS</h3>
+						<h2>Apollo 11</h2>
+					</div>
+				<div class="clear"></div>
+			</a>
+			</div>		
+		</div>
+		<div class="detailView">
+			<div class="item" onclick="changeQuery(Apollo 12)">
+			<a href="javascript:google.maps.event.trigger(gmarkers['Apollo 12'],'click');">
+				<img src="img/apollo/apollo12.png" class="pix" />
+					<div class="txt">
+						<h3>LANDINGS</h3>
+						<h2>Apollo 12</h2>
+					</div>
+				<div class="clear"></div>
+			</a>
+			</div>		
+		</div>
+		<div class="detailView">
+			<div class="item" onclick="changeQuery(Apollo 13)">
+			<a href="javascript:google.maps.event.trigger(gmarkers['Apollo 13'],'click');">
+				<img src="img/apollo/apollo13.png" class="pix" />
+					<div class="txt">
+						<h3>LANDINGS</h3>
+						<h2>Apollo 13</h2>
+					</div>
+				<div class="clear"></div>
+			</a>
+			</div>		
+		</div>
+		<div class="detailView">
+			<div class="item" onclick="changeQuery(Apollo 14)">
+			<a href="javascript:google.maps.event.trigger(gmarkers['Apollo 14'],'click');">
+				<img src="img/apollo/apollo14.png" class="pix" />
+					<div class="txt">
+						<h3>LANDINGS</h3>
+						<h2>Apollo 14</h2>
+					</div>
+				<div class="clear"></div>
+			</a>
+			</div>		
+		</div>
+		<div class="detailView">
+			<div class="item" onclick="changeQuery(Apollo 15)">
+			<a href="javascript:google.maps.event.trigger(gmarkers['Apollo 15'],'click');">
+				<img src="img/apollo/apollo15.png" class="pix" />
+					<div class="txt">
+						<h3>LANDINGS</h3>
+						<h2>Apollo 15</h2>
+					</div>
+				<div class="clear"></div>
+			</a>
+			</div>		
+		</div>
+		<div class="detailView">
+			<div class="item" onclick="changeQuery(Apollo 16)">
+			<a href="javascript:google.maps.event.trigger(gmarkers['Apollo 16'],'click');">
+				<img src="img/apollo/apollo16.png" class="pix" />
+					<div class="txt">
+						<h3>LANDINGS</h3>
+						<h2>Apollo 16</h2>
+					</div>
+				<div class="clear"></div>
+			</a>
+			</div>		
+		</div>			
+		<div class="detailView">
+			<div class="item" onclick="changeQuery(Mare Tranquillitatis)">
+			<a href="javascript:google.maps.event.trigger(gmarkers['Mare Tranquillitatis'],'click');">
+				<img src="img/moon/mare_tranquillitatis.jpg" class="pix" />
+					<div class="txt">
+						<h3>Mare</h3>
+						<h2>Tranquilitatis</h2>
+					</div>
+				<div class="clear"></div>
+			</a>
+			</div>		
+		</div>
+		<div class="detailView">
+			<div class="item" onclick="changeQuery(Alien)">
+				<a href="javascript:google.maps.event.trigger(gmarkers['Alien'],'click');">
+				<img src="img/moon/mare_tranquillitatis.jpg" class="pix" />
+					<div class="txt">
+						<h3>????</h3>
+						<h2>????</h2>
+					</div>
+				<div class="clear"></div>
+			</a>
+			</div>		
+		</div>
+	</div>
+
+
+
+
+	<div id="map-canvas">
+	</div>
+
+</body>
+
+</html>
+
+<script>
+
+var reco = new WebSpeechRecognition();
+reco.statusText('status');
+reco.statusImage('status_img');
+reco.finalResults('pac-input');
+
+reco.onEnd = function() {
+	if (reco.final_transcript != '') {
+		if(reco.final_transcript =="Tierra" || reco.final_transcript =="Earth"){
+  			send_voice("planet=earth");
+  		}
+  		
+  		else if(reco.final_transcript =="Luna" || reco.final_transcript =="Moon"){
+  	  		send_voice("planet=moon");
+   		}
+   		
+  		else if(reco.final_transcript =="Marte" || reco.final_transcript =="Mars"){
+  	  		send_voice("planet=mars");
+  		}
+  		else if(reco.final_transcript =="Apolo 11"){
+  	  		send_voice("search=0.681943, 23.459048");
+  	  		$.get("http://192.168.1.70?POID1=1&POID2=0&POID3=0&POID4=0&POID5=0&POID6=0&POID7=0&POID8=0&POID9=0");
+  		}
+  		
+  	  	else{
+			send_voice("search="+reco.final_transcript);
+		}
+  	}
+};
+</script>

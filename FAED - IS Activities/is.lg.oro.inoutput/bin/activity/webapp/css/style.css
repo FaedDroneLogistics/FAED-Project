@@ -1,0 +1,134 @@
+
+  html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px;
+
+      }
+	#box{
+		position: absolute;
+		background-color: transparent;
+		z-index:2;
+		margin-left: 60%;
+		text-align:center;
+	}
+	#box2{
+		position: absolute;
+		background-color: transparent;
+		z-index:2;
+		text-align:center;
+	}
+	#box3{
+position: absolute;
+		background-color: black;
+		z-index:2;
+		text-align:center;
+height:100%;
+	width:130px;
+	
+	}
+
+
+/*
+Right DIV information.
+ul and li items defined below.
+*/
+
+#right{
+	float: right;
+	height:	96%;
+	background:white;
+	overflow:scroll;
+	overflow-x:hidden;
+	-webkit-overflow-scrolling:touch;	
+}
+
+
+@charset "UTF-8";
+.detailView {
+	font-family:"Lucida Grande", arial, Helvetica , sans-serif;
+	padding:0px;
+	margin:0;
+	width:300px;
+	border:1px solid #bdbdbd;
+}
+.detailView .item
+{
+	padding:10px;
+	margin:0px;
+	border-bottom: 1px #bdbdbd solid;
+}
+
+.detailView .item a
+{
+	text-decoration:none;
+}
+
+.detailView .item:last-child
+{
+	border-bottom:none;
+}
+.detailView .item:hover
+{
+	background:#bdbdbd;
+}
+.detailView .pix
+{
+	float:left;
+	padding:3px;
+	margin-right:10px;
+	height:30%;
+	width: 30%;
+	/* border:1px solid #bdbdbd;
+	background:#FFF;
+	box-shadow:   0px   2px  2px 0px #ccc  ;
+	-moz-box-shadow:   0px   2px  2px  #ccc;   
+	-webkit-box-shadow:    0px   2px  2px 0px #ccc ;
+	*/
+}
+.detailView h3
+{
+	margin:0px;
+	padding:0px;
+	font-size:20px;
+	font-weight:normal;
+	color:#000;
+	line-height:14px;
+	margin-bottom:5px;
+}
+.detailView .txt
+{
+	font-size:15px;
+	color:#555;
+	padding:0px;
+	margin:0px;
+	margin-top:5px;
+	/*
+	float:left;
+	*/
+}
+.detailView .clear
+{
+	clear:both;
+}
+
+.detailView .option
+{
+	float:right;
+	margin-top:10px;
+	opacity:0;
+	cursor:pointer;
+}
+.detailView .item:hover  .option 
+{
+	opacity:1;
+}
+.detailView a img   
+{
+	border:none;
+}
+
+#status_img{
+	width:200px;
+}
+

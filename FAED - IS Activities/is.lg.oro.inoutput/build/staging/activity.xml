@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<activity interactiveSpacesVersion="[1.0.0, 2.0.0)">
+    <name>IS and LG - Expo JoanOro Routable InputOutput</name>
+    <description>
+Routable Input and Output activity that opens web browser with moon and sends via route the speech recognition
+    </description>
+
+    <identifyingName>is.lg.oro.inoutput</identifyingName>
+    <version>1.0.0</version>
+
+
+</activity>

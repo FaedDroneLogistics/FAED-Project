@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<project type="activity" builder="java">
+    <name>IS and LG - Expo Joan Oro routable INPUT activity</name>
+    <description>
+Receive the speech recognition via route and creates query.txt on tmp folder.
+    </description>
+
+    <identifyingName>is.lg.oro.input</identifyingName>
+    <version>1.0.0</version>
+</project>

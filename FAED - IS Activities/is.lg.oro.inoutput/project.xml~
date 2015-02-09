@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<project type="activity" builder="java">
+    <name>InteractiveSpaces Liquid Galaxy Moon</name>
+    <description>
+Routable Input activity that opens web browser with moon
+    </description>
+
+    <identifyingName>is.lg.oro.input</identifyingName>
+    <version>1.0.0</version>
+</project>
