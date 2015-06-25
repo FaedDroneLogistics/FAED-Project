@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+	<Document>
+		<Style id="custom_icon">
+			<IconStyle>
+				<Icon>
+					<href>/Users/jbondia/Documents/workspace/KMLGenerator/images/meteo_icon.png</href>
+					<scale>1.0</scale>
+				</Icon>
+			</IconStyle>
+		</Style>
+		<Placemark>
+			<name>MS1</name>
+			<description>Meteo Station 1</description>
+			<styleUrl>custom_icon</styleUrl>
+			<Point>
+				<altitudeMode>absolute</altitudeMode>
+				<coordinates>0.606588,41.605469,75.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>MS2</name>
+			<description>Meteo Station 2</description>
+			<styleUrl>custom_icon</styleUrl>
+			<Point>
+				<altitudeMode>absolute</altitudeMode>
+				<coordinates>0.624097,41.607202,75.0</coordinates>
+			</Point>
+		</Placemark>
+t</Document>
+</kml>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+	<Document>
+		<Style id="custom_icon">
+			<IconStyle>
+				<Icon>
+					<href>/Users/jbondia/Documents/workspace/KMLGenerator/images/hangar_icon.png</href>
+					<scale>1.0</scale>
+				</Icon>
+			</IconStyle>
+		</Style>
+		<Placemark>
+			<name>H1</name>
+			<description>Hangar 1</description>
+			<styleUrl>custom_icon</styleUrl>
+			<Point>
+				<altitudeMode>absolute</altitudeMode>
+				<coordinates>0.626876,41.618085,175.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>H2</name>
+			<description>Hangar 2</description>
+			<styleUrl>custom_icon</styleUrl>
+			<Point>
+				<altitudeMode>absolute</altitudeMode>
+				<coordinates>0.613583,41.616443,175.0</coordinates>
+			</Point>
+		</Placemark>
+t</Document>
+</kml>

@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
+    </head>
+    <body>
+        <div class="row">
+            <form class="col s12" method="post" enctype="multipart/form-data" action="">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="href" type="text" class="validate">
+                        <label for="href">{{ form.href.label }}</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="scale" type="text" class="validate">
+                        <label for="href">{{ form.scale.label }}</label>
+                    </div>
+                </div>
+                <a href="/"><input type="submit" value="Send" class="btn btn-default"/></a>
+            </form>
+        </div>
+    </body>
+</html>

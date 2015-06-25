@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+	<Document>
+		<ScreenOverlay>
+			<name>FAED Project Icon</name>
+			<Icon>
+				<href>/Users/jbondia/Documents/workspace/KMLGenerator/images/faed_logo_small.png</href>
+			</Icon>
+		<overlayXY x="0" y="1" xunits="fraction" yunits="fraction"/>
+		<screenXY x="0" y="1" xunits="fraction" yunits="fraction"/>
+		<rotationXY x="0" y="0" xunits="fraction" yunits="fraction"/>
+		<size x="0" y="0" xunits="fraction" yunits="fraction"/>
+		</ScreenOverlay>
+		<ScreenOverlay>
+			<name>FAED Information</name>
+			<Icon>
+				<href>/Users/jbondia/Documents/workspace/KMLGenerator/images/faed_info.png</href>
+			</Icon>
+		<overlayXY x="1" y="0" xunits="fraction" yunits="fraction"/>
+		<screenXY x="1" y="0" xunits="fraction" yunits="fraction"/>
+		<rotationXY x="0" y="0" xunits="fraction" yunits="fraction"/>
+		<size x="0" y="0" xunits="fraction" yunits="fraction"/>
+		</ScreenOverlay>
+	</Document>
+</kml>
