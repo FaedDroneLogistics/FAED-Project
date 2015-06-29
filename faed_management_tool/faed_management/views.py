@@ -1,8 +1,8 @@
-from django.shortcuts import render
-from django.views.generic import ListView, FormView, CreateView
+import forms, models
+from django.views.generic import FormView
+from rest_framework import viewsets
+from serializers import HangarSerializer
 
-import models
-import forms
 
 #class PointListView(ListView):
 #    context_object_name = 'points'
@@ -36,6 +36,11 @@ class HangarFormView(FormView):
     template_name = 'hangar_form.html'
     form_class = forms.HangarForm
     success_url = "/hangarform"
+
+
+class HangarViewSet(viewsets.ModelViewSet):
+    queryset = models.Hangar.objects.all()
+    serializer_class = HangarSerializer
 
 
 #def get_kml(request):

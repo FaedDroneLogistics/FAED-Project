@@ -35,6 +35,7 @@ class Hangar(models.Model):
     latitude = models.FloatField()
     longitude = models.FloatField()
     altitude = models.FloatField()
+    radius = models.FloatField()
     is_available = models.BooleanField(default=True)
     style_url = models.ForeignKey(StyleURL)
     drop_points = models.ManyToManyField(DropPoint)

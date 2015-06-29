@@ -23,16 +23,17 @@ class DropPointForm(forms.Form):
 class DroneForm(forms.Form):
     plate = forms.TextInput()
 
-class HangarForm(forms.ModelForm):
+class HangarForm(forms.Form):
     name = forms.TextInput()
     description = forms.Textarea()
     latitude = forms.FloatField()
     longitude = forms.FloatField()
     altitude = forms.FloatField()
+    radius = forms.FloatField()
     is_available = forms.BooleanField()
     style_url = forms.ChoiceField()
     drone = forms.ChoiceField()
 
     def __init__(self, *args, **kwargs):
-        super(DropPointForm, self).__init__(*args, **kwargs)
+        super(HangarForm, self).__init__(*args, **kwargs)
         self.fields['drone'].choices = [(drone.id, drone.plate) for drone in models.Drone.objects.all()]
