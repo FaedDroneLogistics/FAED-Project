@@ -7,19 +7,32 @@ class StyleURLForm(forms.Form):
     scale = forms.FloatField()
 
 
-class DropPointForm(forms.ModelForm):
-    class Meta:
-        model = models.DropPoint
-        fields = ('name', 'description', 'latitude', 'longitude', 'altitude',
-                'is_available', 'style_url',)
+class DropPointForm(forms.Form):
+    name = forms.TextInput()
+    description = forms.Textarea()
+    latitude = forms.FloatField()
+    longitude = forms.FloatField()
+    altitude = forms.FloatField()
+    is_available = forms.BooleanField()
+    style_url = forms.ChoiceField()
 
-class DroneForm(forms.ModelForm):
-    class Meta:
-        model = models.Drone
-        fields = ('plate',)
+    def __init__(self, *args, **kwargs):
+        super(DropPointForm, self).__init__(*args, **kwargs)
+        self.fields['style_url'].choices = [(style.id, style.href) for style in models.StyleURL.objects.all()]
+
+class DroneForm(forms.Form):
+    plate = forms.TextInput()
 
 class HangarForm(forms.ModelForm):
-    class Meta:
-        model = models.Hangar
-        fields = ('name', 'description', 'latitude', 'longitude', 'altitude',
-                'is_available', 'style_url', 'drone',)
+    name = forms.TextInput()
+    description = forms.Textarea()
+    latitude = forms.FloatField()
+    longitude = forms.FloatField()
+    altitude = forms.FloatField()
+    is_available = forms.BooleanField()
+    style_url = forms.ChoiceField()
+    drone = forms.ChoiceField()
+
+    def __init__(self, *args, **kwargs):
+        super(DropPointForm, self).__init__(*args, **kwargs)
+        self.fields['drone'].choices = [(drone.id, drone.plate) for drone in models.Drone.objects.all()]

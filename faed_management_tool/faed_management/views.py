@@ -26,6 +26,7 @@ class StyleURLFormView(FormView):
 class DropPointFormView(FormView):
     template_name = 'droppoint_form.html'
     form_class = forms.DropPointForm
+    success_url = "/droppointform"
 
 #class PointFormView(FormView):
 #    template_name = 'point_form.html'
@@ -34,6 +35,7 @@ class DropPointFormView(FormView):
 class HangarFormView(FormView):
     template_name = 'hangar_form.html'
     form_class = forms.HangarForm
+    success_url = "/hangarform"
 
 
 #def get_kml(request):

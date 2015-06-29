@@ -25,7 +25,5 @@ urlpatterns = [
     url(r'^droppointform/$', DropPointFormView.as_view()),
     url(r'^droneform/$', DroneFormView.as_view()),
     url(r'^hangarform/$', HangarFormView.as_view()),
-#    url(r'^pointlist/$', PointListView.as_view()),
-#    url(r'^pointform/$', PointFormView.as_view()),
     url(r'^admin/', include(admin.site.urls)),
 ]
